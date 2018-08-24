@@ -29,3 +29,6 @@ Route::get('likes', 'LikeController@index');
 
 
 Route::get('comments', 'CommentController@index');
+
+Route::get('followers', 'FollowerController@index');
+Route::get('followings', 'FollowingController@index');
