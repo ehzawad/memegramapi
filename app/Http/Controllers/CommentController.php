@@ -30,6 +30,16 @@ class CommentController extends Controller
      */
     public function store(Request $request)
     {
+
+        $comment = $request->isMethod('put') ? Comment::findOrFail($request->comment_id) : new Comment;
+        $comment->id = $request->input('comment_id');
+        $comment->photo_id = $request->input('photo_id');
+        $comment->author_id = $request->input('author_id');
+        $comment->body = $request->input('body');
+
+        if($comment->save()) {
+            return new CommentResource($comment);
+        }
         //
     }
 
