@@ -19,11 +19,9 @@ class PeopleResource extends JsonResource
          'author_id' => $this->id,
          'username' => $this->username,
          'email' => $this->email,
-         'password' => $this->salted_password,
-         'fullname' => [
-             'first_name' => $this->first_name,
-             'last_name' => $this->last_name,
-             ],
+         'salted_password' => $this->salted_password,
+         'first_name' => $this->first_name,
+         'last_name' => $this->last_name,
         ];
     }
 }

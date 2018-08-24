@@ -27,7 +27,18 @@ class PeopleController extends Controller
      */
     public function store(Request $request)
     {
-        //
+
+        $people = $request->isMethod('put') ? People::findOrFail($request->author_id) : new People;
+        $people->id = $request->input('author_id');
+        $people->username = $request->input('username');
+        $people->email = $request->input('email');
+        $people->salted_password = $request->input('salted_password');
+        $people->first_name = $request->input('first_name');
+        $people->last_name = $request->input('last_name');
+        if($people->save()) {
+            return new PeopleResource($people);
+        }
+
     }
 
     /**
@@ -36,9 +47,11 @@ class PeopleController extends Controller
      * @param  \App\People  $people
      * @return \Illuminate\Http\Response
      */
-    public function show(People $people)
+    public function show(People $people, $id)
     {
         //
+        $people = People::findOrFail($id);
+        return new PeopleResource($people);
     }
 
     /**
@@ -59,8 +72,13 @@ class PeopleController extends Controller
      * @param  \App\People  $people
      * @return \Illuminate\Http\Response
      */
-    public function destroy(People $people)
+    public function destroy(People $people, $id)
     {
         //
+
+        $people = People::findOrFail($id);
+        if($people->delete()) {
+            return new PeopleResource($people);
+        }
     }
 }

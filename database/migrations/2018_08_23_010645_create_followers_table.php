@@ -19,7 +19,7 @@ class CreateFollowersTable extends Migration
             $table->enum('status',['pending','accepted', 'rejected']);
             $table->timestamps();
 
-            $table->foreign('author_id')->references('id')->on('people');
+            $table->foreign('author_id')->references('id')->on('people')->onDelete('cascade');
         });
     }
 

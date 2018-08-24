@@ -20,7 +20,7 @@ class CreatePeopleTable extends Migration
             $table->string('salted_password');
             $table->string('first_name');
             $table->string('last_name');
-            $table->timestamps();
+            $table->timestamps()->nullable();
         });
     }
 

@@ -18,7 +18,10 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 Route::get('peoples', 'PeopleController@index');
-
+Route::get('people/{id}', 'PeopleController@show');
+Route::post('people', 'PeopleController@store');
+Route::put('people', 'PeopleController@store');
+Route::delete('people/{id}', 'PeopleController@destroy');
 
 
 Route::get('photos', 'PhotoController@index');

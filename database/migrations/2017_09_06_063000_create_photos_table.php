@@ -20,7 +20,7 @@ class CreatePhotosTable extends Migration
             $table->string('image_path');
             $table->timestamps();
 
-            $table->foreign('author_id')->references('id')->on('people');
+            $table->foreign('author_id')->references('id')->on('people')->onDelete('cascade');
         });
     }
 
