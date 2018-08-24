@@ -49,9 +49,11 @@ class CommentController extends Controller
      * @param  \App\Comment  $comment
      * @return \Illuminate\Http\Response
      */
-    public function show(Comment $comment)
+    public function show(Comment $comment, $id)
     {
         //
+        $comment = Comment::findOrFail($id);
+        return new CommentResource($comment);
     }
 
     /**
@@ -72,8 +74,13 @@ class CommentController extends Controller
      * @param  \App\Comment  $comment
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Comment $comment)
+    public function destroy(Comment $comment, $id)
     {
-        //
+
+        $comment = Comment::findOrFail($id);
+        if($comment->delete()) {
+            return new CommentResource($comment);
+        }
+
     }
 }
