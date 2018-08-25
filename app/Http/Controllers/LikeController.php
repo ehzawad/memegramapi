@@ -29,7 +29,15 @@ class LikeController extends Controller
      */
     public function store(Request $request)
     {
-        //
+
+        $like = $request->isMethod('put') ? Like::findOrFail($request->like_id) : new Like;
+        $like->id = $request->input('like_id');
+        $like->photo_id = $request->input('photo_id');
+        $like->author_id = $request->input('author_id');
+
+        if($like->save()) {
+            return new LikeResource($like);
+        }
     }
 
     /**
@@ -38,9 +46,13 @@ class LikeController extends Controller
      * @param  \App\Like  $like
      * @return \Illuminate\Http\Response
      */
-    public function show(Like $like)
+    public function show(Like $like, $id)
     {
         //
+        $like = Like::findOrFail($id);
+        if($like->delete()) {
+            return new LikeResource($like);
+        }
     }
 
     /**
@@ -61,8 +73,12 @@ class LikeController extends Controller
      * @param  \App\Like  $like
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Like $like)
+    public function destroy(Like $like, $id)
     {
         //
+        $like = Like::findOrFail($id);
+        if($like->delete()) {
+            return new LikeResource($like);
+        }
     }
 }

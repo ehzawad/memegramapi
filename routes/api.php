@@ -29,6 +29,10 @@ Route::get('photos', 'PhotoController@index');
 
 
 Route::get('likes', 'LikeController@index');
+Route::get('like/{id}', 'LikeController@show');
+Route::post('like', 'LikeController@store');
+Route::put('like', 'LikeController@store');
+Route::delete('like/{id}', 'LikeController@destroy');
 
 
 Route::get('comments', 'CommentController@index');
