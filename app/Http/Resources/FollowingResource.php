@@ -14,6 +14,11 @@ class FollowingResource extends JsonResource
      */
     public function toArray($request)
     {
-        return parent::toArray($request);
+        // return parent::toArray($request);
+        return [
+            'following_id' => $this->id,
+            'author_id' => $this->author_id,
+            'status' => $this->status,
+        ];
     }
 }

@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Follower;
+use App\People;
 use Illuminate\Http\Request;
 use App\Http\Resources\FollowerResource;
+use App\Http\Resources\PeopleResource;
 
 class FollowerController extends Controller
 {
@@ -29,6 +31,15 @@ class FollowerController extends Controller
     public function store(Request $request)
     {
         //
+
+        $follower = $request->isMethod('put') ? Follower::findOrFail($request->follower_id) : new Follower;
+        $follower->id = $request->input('follower_id');
+        $follower->author_id = $request->input('author_id');
+        $follower->status = $request->input('status');
+
+        if($follower->save()) {
+            return new LikeResource($follower);
+        }
     }
 
     /**
@@ -37,9 +48,18 @@ class FollowerController extends Controller
      * @param  \App\Follower  $follower
      * @return \Illuminate\Http\Response
      */
-    public function show(Follower $follower)
+    public function show(Follower $follower, $id)
     {
         //
+        $follower = Follower::findOrFail($id);
+        return new FollowerResource($follower);
+    }
+
+    public function showforAuthor(People $author, $id)
+    {
+        //
+        $author = People::findOrFail($id);
+        return new PeopleResource($author);
     }
 
     /**

@@ -42,4 +42,14 @@ Route::put('comment', 'CommentController@store');
 Route::delete('comment/{id}', 'CommentController@destroy');
 
 Route::get('followers', 'FollowerController@index');
+Route::get('follower/{id}', 'FollowerController@show');
+Route::get('follower/user/{id}', 'FollowerController@showforAuthor');
+Route::post('follow', 'FollowerController@store');
+Route::put('follow', 'FollowerController@store');
+Route::delete('follow/{id}', 'FollowerController@destroy');
+
 Route::get('followings', 'FollowingController@index');
+Route::get('following/{id}', 'FollowingController@show');
+Route::post('following', 'FollowingController@store');
+Route::put('following', 'FollowingController@store');
+Route::delete('following/{id}', 'FollowingController@destroy');
