@@ -28,6 +28,27 @@ class PhotoController extends Controller
     public function store(Request $request)
     {
         //
+        $photo = $request->isMethod('put') ? Photo::findOrFail($request->photo_id) : new Photo;
+        $photo->id = $request->input('photo_id');
+        $photo->author_id = $request->input('author_id');
+        $photo->caption = $request->input('caption');
+        if ($request->hasFile('image_path')) {
+            $path = $request->image_path->path();
+            $extension = $request->image_path->getClientOriginalExtension();
+            $name = $path.'.'.$extension;
+            $destinationPath = public_path('/images');
+            $imagePath = $destinationPath. "/".  $name;
+
+            $image = $request->file('image_path');
+            $image->move($destinationPath, $imagePath);
+
+            $photo->image_path = basename($imagePath);
+         }
+
+        // $photo->image_path = $request->input('image_path');
+        if ($photo->save()) {
+            return new PhotoResource($photo);
+        }
     }
 
     /**
