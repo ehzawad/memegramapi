@@ -14,7 +14,7 @@ class People extends Model
         return $this->hasMany(Photo::class);
     }
 
-    public function follwers()
+    public function followers()
     {
         return $this->hasMany(Follower::class);
     }
