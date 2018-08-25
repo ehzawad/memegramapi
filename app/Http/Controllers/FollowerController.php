@@ -38,7 +38,7 @@ class FollowerController extends Controller
         $follower->status = $request->input('status');
 
         if($follower->save()) {
-            return new LikeResource($follower);
+            return new FollowerResource($follower);
         }
     }
 
@@ -80,8 +80,11 @@ class FollowerController extends Controller
      * @param  \App\Follower  $follower
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Follower $follower)
+    public function destroy(Follower $follower, $id)
     {
-        //
+        $follower = Follower::findOrFail($id);
+        if($follower->delete()) {
+            return new FollowerResource($follower);
+        }
     }
 }

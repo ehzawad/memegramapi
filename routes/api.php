@@ -25,10 +25,14 @@ Route::delete('people/{id}', 'PeopleController@destroy');
 
 
 Route::get('photos', 'PhotoController@index');
-
+Route::get('photo/{id}', 'PhotoController@show');
+Route::post('photo', 'PhotoController@store');
+Route::put('photo', 'PhotoController@store');
+Route::delete('photo/{id}', 'PhotoController@destroy');
 
 
 Route::get('likes', 'LikeController@index');
+// Route::post('givelike', 'LikeController@like');
 Route::get('like/{id}', 'LikeController@show');
 Route::post('like', 'LikeController@store');
 Route::put('like', 'LikeController@store');
@@ -44,9 +48,9 @@ Route::delete('comment/{id}', 'CommentController@destroy');
 Route::get('followers', 'FollowerController@index');
 Route::get('follower/{id}', 'FollowerController@show');
 Route::get('follower/user/{id}', 'FollowerController@showforAuthor');
-Route::post('follow', 'FollowerController@store');
-Route::put('follow', 'FollowerController@store');
-Route::delete('follow/{id}', 'FollowerController@destroy');
+Route::post('follower', 'FollowerController@store');
+Route::put('follower', 'FollowerController@store');
+Route::delete('follower/{id}', 'FollowerController@destroy');
 
 Route::get('followings', 'FollowingController@index');
 Route::get('following/{id}', 'FollowingController@show');

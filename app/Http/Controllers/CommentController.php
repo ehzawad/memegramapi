@@ -43,6 +43,18 @@ class CommentController extends Controller
         //
     }
 
+    // public function createorUpdateComment($photo_id, Request $request)
+    // {
+    //     $comment = $request->isMethod('put') ? Comment::findOrFail($request->comment_id) : new Comment;
+    //     $comment->author_id = $request->input('author_id');
+    //     $comment->photo_id = $photo_id;
+    //     $comment->body = $request->input('body');
+    //
+    //     if($comment->save()) {
+    //         return new CommentResource($comment);
+    //     }
+    // }
+
     /**
      * Display the specified resource.
      *

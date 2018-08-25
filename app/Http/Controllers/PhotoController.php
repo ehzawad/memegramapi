@@ -36,9 +36,11 @@ class PhotoController extends Controller
      * @param  \App\Photo  $photo
      * @return \Illuminate\Http\Response
      */
-    public function show(Photo $photo)
+    public function show(Photo $photo, $id)
     {
         //
+        $photo = Photo::findOrFail($id);
+        return new PhotoResource($photo);
     }
 
     /**
@@ -59,8 +61,15 @@ class PhotoController extends Controller
      * @param  \App\Photo  $photo
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Photo $photo)
+    public function destroy(Photo $photo, $id)
     {
         //
+        $photo = Photo::findOrFail($id);
+        if ($photo->delete()) {
+            // return new PhotoResource($photo);
+            return response()->json([
+                'success' => 'true',
+            ]);
+        }
     }
 }

@@ -29,6 +29,15 @@ class FollowingController extends Controller
     public function store(Request $request)
     {
         //
+
+        $following = $request->isMethod('put') ? Following::findOrFail($request->following_id) : new Following;
+        $following->id = $request->input('following_id');
+        $following->author_id = $request->input('author_id');
+        $following->status = $request->input('status');
+
+        if($following->save()) {
+            return new FollowingResource($following);
+        }
     }
 
     /**
@@ -37,9 +46,10 @@ class FollowingController extends Controller
      * @param  \App\Following  $following
      * @return \Illuminate\Http\Response
      */
-    public function show(Following $following)
+    public function show(Following $following, $id)
     {
-        //
+        $following = Following::findOrFail($id);
+        return new FollowingResource($following);
     }
 
     /**
@@ -62,6 +72,10 @@ class FollowingController extends Controller
      */
     public function destroy(Following $following)
     {
+        $following = Following::findOrFail($id);
+        if($following->delete()) {
+            return new FollowingResource($following);
+        }
         //
     }
 }

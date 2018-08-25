@@ -55,6 +55,34 @@ class LikeController extends Controller
         }
     }
 
+
+    // public function like($id, Request $request)
+    // {
+    //     $like = Like::where([
+    //         'photo_id' => $id,
+    //         'author_id' => $request->input('author_id')])->first();
+    //
+    //     if(!$like) {
+    //         Like::create([
+    //             'photo_id' => $id,
+    //             'author_id' => $request->input('author_id'),
+    //         ]);
+    //         // return redirect('home');
+    //         return response()->json([
+    //             'liked' => 'true',
+    //             'disliked' => 'false'
+    //         ]);
+    //     }
+    //
+    //     $like->delete(); // No need to query again
+    //     // return redirect('home');
+    //     return response()->json([
+    //         'liked' => 'false',
+    //         'disliked' => 'true'
+    //     ]);
+    //     // Will refactor to make ajax requestw
+    // }
+
     /**
      * Update the specified resource in storage.
      *
