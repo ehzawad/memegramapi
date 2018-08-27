@@ -42,7 +42,6 @@ class LoginController extends Controller
 
     public function login(People $people, $username)
     {
-            // User::select('id')->where('username', $username)->first();
             $user = People::where('username', $username) -> first();
             // $model = People::where('username', $username)->firstOrFail();
             if ($user) {

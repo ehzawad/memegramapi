@@ -23,6 +23,9 @@ Route::post('people', 'PeopleController@store');
 Route::put('people', 'PeopleController@store');
 Route::delete('people/{id}', 'PeopleController@destroy');
 
+// FB friend request implementation
+Route::post('people/self/{userid}/follow/{profileid}', 'PeopleController@makefriend');
+Route::delete('people/self/{userid}/unfollow/{profileid}', 'PeopleController@unfriend');
 
 Route::get('photos', 'PhotoController@index');
 Route::get('photo/{id}', 'PhotoController@show');
