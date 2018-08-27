@@ -57,3 +57,6 @@ Route::get('following/{id}', 'FollowingController@show');
 Route::post('following', 'FollowingController@store');
 Route::put('following', 'FollowingController@store');
 Route::delete('following/{id}', 'FollowingController@destroy');
+
+
+Route::get('login/{username}', 'LoginController@login');
