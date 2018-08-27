@@ -45,7 +45,14 @@ class LoginController extends Controller
             // User::select('id')->where('username', $username)->first();
             $user = People::where('username', $username) -> first();
             // $model = People::where('username', $username)->firstOrFail();
-            return new PeopleResource($user);
+            if ($user) {
+                return new PeopleResource($user);
+            } else {
+                return response()->json([
+                    'success' => 'false',
+                ]);
+            }
+
     }
 
     /**
