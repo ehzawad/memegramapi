@@ -32,23 +32,27 @@ class PhotoController extends Controller
         $photo->id = $request->input('photo_id');
         $photo->author_id = $request->input('author_id');
         $photo->caption = $request->input('caption');
+        $photo->image_path = $request->input('image_path');
+        if ($photo->save()) {
+            return new PhotoResource($photo);
+        }
+    }
+
+
+
+    public function upload(Request $request) {
         if ($request->hasFile('image_path')) {
-            $path = $request->image_path->path();
+            //$path = $request->image_path->path();
             $extension = $request->image_path->getClientOriginalExtension();
-            $name = $path.'.'.$extension;
+            $name = rand(10000000,90000000).'.'.$extension;
             $destinationPath = public_path('/images');
-            $imagePath = $destinationPath. "/".  $name;
+            $imagePath = $destinationPath. "/". $name ;
 
             $image = $request->file('image_path');
             $image->move($destinationPath, $imagePath);
 
-            $photo->image_path = basename($imagePath);
+            return $name;
          }
-
-        // $photo->image_path = $request->input('image_path');
-        if ($photo->save()) {
-            return new PhotoResource($photo);
-        }
     }
 
     /**
@@ -60,8 +64,8 @@ class PhotoController extends Controller
     public function show(Photo $photo, $id)
     {
         //
-        $photo = Photo::findOrFail($id);
-        return new PhotoResource($photo);
+        $photo = Photo::where('author_id', $id)->get();
+        return $photo;
     }
 
     /**

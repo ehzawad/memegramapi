@@ -17,49 +17,49 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::get('peoples', 'PeopleController@index');
-Route::get('people/{id}', 'PeopleController@show');
-Route::post('people', 'PeopleController@store');
-Route::put('people', 'PeopleController@store');
-Route::delete('people/{id}', 'PeopleController@destroy');
+Route::get('peoples', 'PeopleController@index')->middleware('cors');
+Route::get('people/{id}', 'PeopleController@show')->middleware('cors');
+Route::post('people', 'PeopleController@store')->middleware('cors');
+Route::put('people', 'PeopleController@store')->middleware('cors');
+Route::delete('people/{id}', 'PeopleController@destroy')->middleware('cors');
 
 // FB friend request implementation
-Route::post('people/self/{userid}/follow/{profileid}', 'PeopleController@makefriend');
-Route::delete('people/self/{userid}/unfollow/{profileid}', 'PeopleController@unfriend');
+Route::post('people/self/{userid}/follow/{profileid}', 'PeopleController@makefriend')->middleware('cors');
+Route::delete('people/self/{userid}/unfollow/{profileid}', 'PeopleController@unfriend')->middleware('cors');
 
-Route::get('photos', 'PhotoController@index');
-Route::get('photo/{id}', 'PhotoController@show');
-Route::post('photo', 'PhotoController@store');
-Route::put('photo', 'PhotoController@store');
-Route::delete('photo/{id}', 'PhotoController@destroy');
+Route::get('photos', 'PhotoController@index')->middleware('cors');
+Route::get('photo/{id}', 'PhotoController@show')->middleware('cors');
+Route::post('photo', 'PhotoController@store')->middleware('cors');
+Route::put('photo', 'PhotoController@store')->middleware('cors');
+Route::delete('photo/{id}', 'PhotoController@destroy')->middleware('cors');
+Route::post('upload', "PhotoController@upload")->middleware('cors');
 
-
-Route::get('likes', 'LikeController@index');
-// Route::post('givelike', 'LikeController@like');
-Route::get('like/{id}', 'LikeController@show');
-Route::post('like', 'LikeController@store');
-Route::put('like', 'LikeController@store');
-Route::delete('like/{id}', 'LikeController@destroy');
-
-
-Route::get('comments', 'CommentController@index');
-Route::get('comment/{id}', 'CommentController@show');
-Route::post('comment', 'CommentController@store');
-Route::put('comment', 'CommentController@store');
-Route::delete('comment/{id}', 'CommentController@destroy');
-
-Route::get('followers', 'FollowerController@index');
-Route::get('follower/{id}', 'FollowerController@show');
-Route::get('follower/user/{id}', 'FollowerController@showforAuthor');
-Route::post('follower', 'FollowerController@store');
-Route::put('follower', 'FollowerController@store');
-Route::delete('follower/{id}', 'FollowerController@destroy');
-
-Route::get('followings', 'FollowingController@index');
-Route::get('following/{id}', 'FollowingController@show');
-Route::post('following', 'FollowingController@store');
-Route::put('following', 'FollowingController@store');
-Route::delete('following/{id}', 'FollowingController@destroy');
+Route::get('likes', 'LikeController@index')->middleware('cors');
+// Route::post('givelike', 'LikeController@like')->middleware('cors');
+Route::get('like/{id}', 'LikeController@show')->middleware('cors');
+Route::post('like', 'LikeController@store')->middleware('cors');
+Route::put('like', 'LikeController@store')->middleware('cors');
+Route::delete('like/{id}', 'LikeController@destroy')->middleware('cors');
 
 
-Route::get('login/{username}', 'LoginController@login');
+Route::get('comments', 'CommentController@index')->middleware('cors');
+Route::get('comment/{id}', 'CommentController@show')->middleware('cors');
+Route::post('comment', 'CommentController@store')->middleware('cors');
+Route::put('comment', 'CommentController@store')->middleware('cors');
+Route::delete('comment/{id}', 'CommentController@destroy')->middleware('cors');
+
+Route::get('followers', 'FollowerController@index')->middleware('cors');
+Route::get('follower/{id}', 'FollowerController@show')->middleware('cors');
+Route::get('follower/user/{id}', 'FollowerController@showforAuthor')->middleware('cors');
+Route::post('follower', 'FollowerController@store')->middleware('cors');
+Route::put('follower', 'FollowerController@store')->middleware('cors');
+Route::delete('follower/{id}', 'FollowerController@destroy')->middleware('cors');
+
+Route::get('followings', 'FollowingController@index')->middleware('cors');
+Route::get('following/{id}', 'FollowingController@show')->middleware('cors');
+Route::post('following', 'FollowingController@store')->middleware('cors');
+Route::put('following', 'FollowingController@store')->middleware('cors');
+Route::delete('following/{id}', 'FollowingController@destroy')->middleware('cors');
+
+
+Route::get('login/{username}', 'LoginController@login')->middleware('cors');
